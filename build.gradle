@@ -1,0 +1,65 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.3.5'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'vn.edu.iuh.fit.pharmacy'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+repositories {
+	mavenCentral()
+}
+
+tasks.named('jar') {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.named('bootJar') {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+	mainClass.set('vn.edu.iuh.fit.pharmacy.TcPharmacyBackendApplication')
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.data:spring-data-rest-hal-explorer'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+//	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'net.datafaker:datafaker:2.4.1'
+	implementation 'org.mapstruct:mapstruct:1.6.2'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.2'
+	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
+	implementation 'com.google.guava:guava:31.0-jre'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'nz.ac.waikato.cms.weka:weka-stable:3.8.6'
+	implementation 'org.apache.mahout:mahout-math:0.13.0'
+	implementation 'org.apache.mahout:mahout-core:0.9'
+	implementation 'org.apache.commons:commons-csv:1.8'
+	implementation 'org.apache.poi:poi-ooxml:5.2.3'
+	implementation 'org.jsoup:jsoup:1.15.2'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
