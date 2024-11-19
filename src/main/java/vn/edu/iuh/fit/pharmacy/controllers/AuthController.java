@@ -57,7 +57,7 @@ public class AuthController {
 
 
             ResponseEntity<BaseResponse<String>> result = restTemplate.exchange(
-                    "http://localhost:9090/tc/api/auth/login",
+                    "https://tcpharmacybackend-production.up.railway.app/tc/api/auth/login",
                     HttpMethod.POST,
                     new HttpEntity<>(user, headers),
                     new ParameterizedTypeReference<>() {
